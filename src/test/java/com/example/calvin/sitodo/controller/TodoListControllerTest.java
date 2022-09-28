@@ -2,12 +2,19 @@ package com.example.calvin.sitodo.controller;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.TEXT_HTML;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import java.util.List;
 
@@ -68,5 +75,17 @@ class TodoListControllerTest {
             content().encoding(UTF_8),
             content().string(containsString("Buy milk"))
         );
+    }
+    
+    @Test
+    @DisplayName("HTTP POST REDIRECTS")
+    void addToList_ok() throws Exception {
+        String text = "Buy milk";
+        
+        mockMvc.perform(post("/list").param("item_text",text)).andExpectAll(
+            status().is3xxRedirection(),redirectedUrl("/list")
+            
+        );
+        verify(todoListService, times(1)).addTodoItem(any(TodoItem.class));        
     }
 }

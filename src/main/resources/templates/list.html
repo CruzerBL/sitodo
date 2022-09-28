@@ -20,6 +20,7 @@
             <th scope="col">ID</th>
             <th scope="col">Title</th>
             <th scope="col">Status</th>
+            <th scope="col">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +28,8 @@
             <td th:text="${item.id}">1</td>
             <td th:text="${item.title}">Cook rice</td>
             <td th:text="${item.finished} ? 'Finished' : 'Not Finished'">Not Finished</td>
+            <td><a href="/list/toggle/[${item.id}]" th:text="${item.finished} ? 'Mark as \'Not Finished\'' : 'Mark as \'Finished\''"></a>
+            </td>
         </tr>
         </tbody>
     </table>
