@@ -2,4 +2,5 @@
 aplikasi sitodo
 
 [![Deploy](https://github.com/CruzerBL/sitodo/actions/workflows/dpl.yml/badge.svg)](https://github.com/CruzerBL/sitodo/actions/workflows/dpl.yml)
-!\[alt text\](https://github.com/CruzerBL/sitodo/blob/main/.github/badges/jacoco.svg)
+[![Coverage](.github/badges/jacoco.svg)]
+
