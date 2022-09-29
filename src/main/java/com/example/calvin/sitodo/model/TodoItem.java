@@ -28,9 +28,4 @@ public class TodoItem {
         this.id = id;
         this.title = title;
     }
-    
-    public void DoItem() {
-        this.finished = this.finished? false: true;
-    }
-
 }
